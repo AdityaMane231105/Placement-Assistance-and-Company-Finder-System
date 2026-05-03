@@ -1,0 +1,250 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Find and apply for placement-friendly companies matching your skills." />
+  <title>CareerLaunch - Your Placement Success Story</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand" onclick="window.location.href='index.html'" title="Home">CareerLaunch</div>
+    <nav>
+      <a href="index.html" class="active">Home</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="profile.html">Profile</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button id="themeToggle" class="theme-btn">Dark Mode</button>
+  </header>
+
+  <main class="page-content">
+    <!-- Hero Section -->
+    <section class="hero-card hero-card-main">
+      <div class="hero-copy">
+        <span class="hero-kicker">Smart Placement Finder</span>
+        <h1>Find Companies That Match Your Skills</h1>
+        <p>Discover placement opportunities, track your applications, and land your dream job with our intelligent company matching platform.</p>
+      </div>
+      <div class="hero-actions">
+        <input id="searchInput" type="search" placeholder="Search by company, role, location, or skills..." />
+        <div class="filters">
+          <div class="filter-select-wrap">
+            <span class="filter-icon" aria-hidden="true">🧠</span>
+            <select id="skillFilter">
+              <option value="all">All Skills</option>
+              <option value="Java">Java</option>
+              <option value="Python">Python</option>
+              <option value="React">React</option>
+              <option value="Node.js">Node.js</option>
+              <option value="SQL">SQL</option>
+              <option value="C++">C++</option>
+              <option value="Data Structures">Data Structures</option>
+              <option value="Machine Learning">Machine Learning</option>
+              <option value="Cloud">Cloud</option>
+            </select>
+          </div>
+          <div class="filter-select-wrap">
+            <span class="filter-icon" aria-hidden="true">📍</span>
+            <select id="locationFilter">
+              <option value="all">All Locations</option>
+              <option value="Bangalore">Bangalore</option>
+              <option value="Mumbai">Mumbai</option>
+              <option value="Pune">Pune</option>
+              <option value="Hyderabad">Hyderabad</option>
+              <option value="Chennai">Chennai</option>
+              <option value="Noida">Noida</option>
+            </select>
+          </div>
+          <div class="filter-select-wrap">
+            <span class="filter-icon" aria-hidden="true">💰</span>
+            <select id="packageFilter">
+              <option value="all">All Packages</option>
+              <option value="3">3 LPA+</option>
+              <option value="4">4 LPA+</option>
+              <option value="5">5 LPA+</option>
+              <option value="6">6 LPA+</option>
+              <option value="7">7 LPA+</option>
+            </select>
+          </div>
+          <div class="filter-select-wrap">
+            <span class="filter-icon" aria-hidden="true">↕️</span>
+            <select id="sortFilter">
+              <option value="recent">Recent</option>
+              <option value="match-high">Best Match</option>
+              <option value="package-high">Package - High to Low</option>
+              <option value="package-low">Package - Low to High</option>
+              <option value="name-asc">A-Z</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Profile Section -->
+    <section id="skillsSection" class="hero-card skills-card">
+      <div class="skills-header">
+        <h2>Your Skills Profile</h2>
+        <button id="toggleSkills" class="btn-secondary skills-toggle-btn">Add Skills</button>
+      </div>
+
+      <div id="skillsDisplay" class="skills-display" style="display: none;">
+        <div id="currentSkills" class="tag-row skills-tags"></div>
+        <p class="skills-note">
+          Companies will be matched using your profile skills, CGPA, role preference, location, and package expectation.
+        </p>
+      </div>
+
+      <div id="skillsForm" style="display: none;">
+        <p class="skills-note">
+          Select your technical skills to get personalized company recommendations:
+        </p>
+        <div id="skillsGrid" class="skills-grid">
+          <!-- Skills will be populated by JavaScript -->
+        </div>
+        <div class="skills-actions">
+          <button id="saveSkills" class="btn">Save Skills</button>
+          <button id="cancelSkills" class="btn-secondary">Cancel</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Statistics -->
+    <section class="stats-row">
+      <div class="metric-card">
+        <p>Total Companies</p>
+        <h2 id="totalCompanies">0</h2>
+      </div>
+      <div class="metric-card">
+        <p>Applications</p>
+        <h2 id="appliedCount">0</h2>
+      </div>
+      <div class="metric-card">
+        <p>Bookmarked</p>
+        <h2 id="bookmarkCount">0</h2>
+      </div>
+      <div class="metric-card">
+        <p>Average Profile Match</p>
+        <h2 id="matchRate">0%</h2>
+      </div>
+    </section>
+
+    <!-- Companies Section -->
+    <section>
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+        <h2 class="section-title">Available Opportunities</h2>
+        <button id="clearFilters" class="btn-secondary" style="display:none;">Clear Filters</button>
+      </div>
+      <div id="companyGrid" class="company-grid"></div>
+    </section>
+
+    <!-- Features Section -->
+        <section id="about" class="feature-section">
+      <div class="section-heading-center">
+        <p class="dashboard-kicker">Why CareerLaunch</p>
+        <h2>Built for placement decisions</h2>
+      </div>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-icon icon-match" aria-hidden="true">🎯</div>
+          <h3>Profile-Based Matching</h3>
+          <p>Compare companies using skills, CGPA, role preference, location, and package goals.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon icon-jobs" aria-hidden="true">💼</div>
+          <h3>50 Opportunities</h3>
+          <p>Explore service, product, fintech, SaaS, consulting, finance, and hardware companies.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon icon-filter" aria-hidden="true">🔎</div>
+          <h3>Focused Filters</h3>
+          <p>Filter by company, role, city, package, and skills from the live opportunity list.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon icon-track" aria-hidden="true">📊</div>
+          <h3>Application Dashboard</h3>
+          <p>Track applied and saved companies with quick placement progress insights.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon icon-secure" aria-hidden="true">🔒</div>
+          <h3>Private Progress</h3>
+          <p>Keep skills, bookmarks, and applications saved locally in your browser.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon icon-fast" aria-hidden="true">⚡</div>
+          <h3>Fast Search</h3>
+          <p>Instantly sort opportunities by match score, package, recent additions, or company name.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Back to Top Button -->
+  <button id="backToTop" class="back-to-top" title="Back to top">Back</button>
+
+  <!-- Chatbot Button -->
+  <button id="chatbotToggle" class="chatbot-toggle" title="Ask me anything about placements!">
+    <span>Chat</span>
+  </button>
+
+  <footer class="footer" id="contact">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="footer-brand-icon" aria-hidden="true">🚀</span>
+        <div>
+          <p class="footer-brand-name">CareerLaunch</p>
+          <p class="footer-brand-tag">Your intelligent companion for campus placements</p>
+        </div>
+      </div>
+      <div class="footer-aside">
+        <nav class="footer-links" aria-label="Footer navigation">
+          <a href="#contact"><span class="footer-link-icon" aria-hidden="true">✉️</span>Contact</a>
+          <a href="#" class="footer-link-muted" title="Privacy policy (placeholder)"><span class="footer-link-icon" aria-hidden="true">🛡️</span>Privacy</a>
+          <a href="#" class="footer-link-muted" title="Terms of use (placeholder)"><span class="footer-link-icon" aria-hidden="true">📄</span>Terms</a>
+        </nav>
+        <p class="footer-made"><span class="footer-link-icon" aria-hidden="true">❤️</span>Made with care for students</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Chatbot Interface -->
+  <div id="chatbot" class="chatbot">
+    <div class="chatbot-header">
+      <div class="chatbot-avatar">BOT</div>
+      <div class="chatbot-title">
+        <h3>Placement Assistant</h3>
+        <p>Online</p>
+      </div>
+      <button id="chatbotClose" class="chatbot-close">X</button>
+    </div>
+    <div id="chatbotMessages" class="chatbot-messages">
+      <div class="message bot-message">
+        <div class="message-avatar">BOT</div>
+        <div class="message-content">
+          <p>Hi! I'm your Placement Assistant. I can help you with:</p>
+          <ul>
+            <li>Company information and requirements</li>
+            <li>Skill matching for jobs</li>
+            <li>Package details and eligibility</li>
+            <li>Application tips and advice</li>
+          </ul>
+          <p>What would you like to know?</p>
+        </div>
+      </div>
+    </div>
+    <div class="chatbot-input">
+      <input type="text" id="chatbotInput" placeholder="Ask me about placements..." />
+      <button id="chatbotSend">Send</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+
+
+
