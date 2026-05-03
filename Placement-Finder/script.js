@@ -1393,7 +1393,7 @@ function mergeCompanySources(primaryCompanies, fallbackCompanies) {
 
 function loadCompanies() {
   // Try local JSON first
-  return fetch('https://placement-backend-jkka.onrender.com/companies')
+  return fetch('https://placement-backend-jkka.onrender.com/api/companies')
     .then((response) => {
       if (response.ok) {
         return response.json().then(normalizeCompanies);
