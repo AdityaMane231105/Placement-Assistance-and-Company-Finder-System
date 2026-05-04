@@ -65,7 +65,7 @@ This platform provides real-time company data, skill-based recommendations, and 
 
 ```bash
 git clone https://github.com/AdityaMane231105/Placement-Assistance-and-Company-Finder-System
-cd placement-finder
+cd Placement-Assistance-and-Company-Finder-System
 ```
 
 
