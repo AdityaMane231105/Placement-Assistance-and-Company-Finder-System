@@ -64,7 +64,7 @@ This platform provides real-time company data, skill-based recommendations, and 
 ### 1️⃣ Clone the repository
 
 ```bash
-git clone https://github.com/your-username/placement-finder.git
+git clone https://github.com/AdityaMane231105/placement-finder.git
 cd placement-finder
 ```
 
@@ -82,7 +82,7 @@ npm install
 Inside `backend/` folder:
 
 ```env
-MONGO_URI=your_mongodb_connection_string
+MONGO_URI=mongodb+srv://adityamane104798_db_user:7nPhVZUDtNvhx8Ue@cluster0.lxmgvgw.mongodb.net/placementDB?retryWrites=true&w=majority
 PORT=5000
 ```
 
