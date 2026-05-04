@@ -1,0 +1,26 @@
+[build]
+  publish = "."
+  command = "echo 'Netlify static site deployment'"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[dev]
+  framework = "static"
+  targetPort = 8000
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[headers]]
+  for = "/api/*"
+  [headers.values]
+    Cache-Control = "no-cache, no-store, must-revalidate"
